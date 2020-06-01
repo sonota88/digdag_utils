@@ -7,7 +7,7 @@ module DigdagUtils
         @endpoint = endpoint
       end
 
-      def get_sessions(pj, wf)
+      def sessions(pj, wf)
         out =
           DigdagUtils.system(
             "digdag",
