@@ -1,15 +1,17 @@
+require_relative "attempt"
+
 module DigdagUtils
   class Session
-    attr_reader :id, :time, :attempt_id
+    attr_reader :id, :time, :attempts
 
     def initialize(
       id: nil,
       time: nil,
-      attempt_id: nil
+      attempts: nil
     )
       @id = id
       @time = time
-      @attempt_id = attempt_id # last attempt id
+      @attempts = attempts
     end
 
     def self.from_command_output(block)
@@ -27,11 +29,23 @@ module DigdagUtils
         attempt_id = m[1].to_i
       end
 
+      attempts = [
+        Attempt.new(id: attempt_id),
+      ]
+
       Session.new(
         id: id,
         time: time,
-        attempt_id: attempt_id,
+        attempts: attempts,
       )
+    end
+
+    def last_attempt
+      if @attempts.size == 1
+        @attempts[0]
+      else
+        raise "not yet impl"
+      end
     end
   end
 end
