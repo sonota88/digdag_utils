@@ -1,9 +1,10 @@
 require "shellwords"
 
 require "digdag_utils/session"
+require "digdag_utils/attempt"
 
 module DigdagUtils
-  def system(*args)
+  def self.system(*args)
     cmd = Shellwords.shelljoin(args)
     out = `#{cmd}`
     status = $? # Process::Status
@@ -12,4 +13,8 @@ module DigdagUtils
     end
     out
   end
+end
+
+if $0 == __FILE__
+  puts DigdagUtils.system("ls")
 end

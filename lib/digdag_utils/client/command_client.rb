@@ -1,3 +1,5 @@
+require_relative "../../digdag_utils"
+
 module DigdagUtils
   class Client
     class CommandClient
