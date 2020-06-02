@@ -32,10 +32,10 @@ module DigdagUtils
       end
 
       def _retry_resume_from(
-          attempt_id,
-          resume_from,
-          revision: revision
-        )
+        attempt_id,
+        resume_from,
+        revision: revision
+      )
         args = ["digdag", "retry", attempt_id]
 
         if revision
@@ -66,7 +66,7 @@ module DigdagUtils
           _retry_resume_from(
             attempt_id,
             resume_from,
-            revision: revision
+            revision: revision,
           )
           return
         end
