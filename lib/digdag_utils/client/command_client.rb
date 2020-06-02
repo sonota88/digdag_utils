@@ -8,6 +8,11 @@ module DigdagUtils
         @endpoint = endpoint
       end
 
+      def _system(*args)
+        sleep 1
+        DigdagUtils.system(*args)
+      end
+
       def sessions(pj, wf, page_size: nil)
         args = []
         args += ["digdag", "sessions", pj, wf]
@@ -18,7 +23,7 @@ module DigdagUtils
 
         args += ["-e", @endpoint]
 
-        out = DigdagUtils.system(*args)
+        out = _system(*args)
 
         blocks = out.split("\n\n")
         blocks.map { |block|
@@ -45,7 +50,7 @@ module DigdagUtils
 
         args += ["-e", @endpoint]
 
-        DigdagUtils.system(*args)
+        _system(*args)
       end
 
       # revision: :latest | :keep
@@ -90,7 +95,7 @@ module DigdagUtils
 
         args += ["-e", @endpoint]
 
-        DigdagUtils.system(*args)
+        _system(*args)
       end
     end
   end
