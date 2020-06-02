@@ -31,6 +31,19 @@ module DigdagUtils
         }
       end
 
+      def tasks(attempt_id)
+        args = []
+        args += ["digdag", "tasks", attempt_id]
+        args += ["-e", @endpoint]
+
+        out = _system(*args)
+
+        blocks = out.split("\n\n")
+        blocks.map { |block|
+          DigdagUtils::Task.from_command_output(block)
+        }
+      end
+
       def _retry_resume_from(
         attempt_id,
         resume_from,
