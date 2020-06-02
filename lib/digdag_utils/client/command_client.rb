@@ -31,26 +31,29 @@ module DigdagUtils
       )
         args = ["digdag", "retry", attempt_id]
 
-        args <<
-          case revision
-          when :keep then "--keep-revision"
-          when :latest then "--latest-revision"
-          else
-            raise "invalid"
-          end
+        if revision
+          args <<
+            case revision
+            when :keep then "--keep-revision"
+            when :latest then "--latest-revision"
+            else
+              raise "invalid"
+            end
+        end
 
-        args <<
-          case resume
-          when :resume then "--resume"
-          when :all then "--all"
-          else
-            raise "invalid"
-          end
+        if resume
+          args <<
+            case resume
+            when :resume then "--resume"
+            when :all then "--all"
+            else
+              raise "invalid"
+            end
+        end
 
         args += ["-e", @endpoint]
-        pp args
 
-        # DigdagUtils.system(*args)
+        DigdagUtils.system(*args)
       end
     end
   end
