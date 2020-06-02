@@ -8,9 +8,14 @@ module DigdagUtils
         @endpoint = endpoint
       end
 
-      def sessions(pj, wf)
+      def sessions(pj, wf, page_size: nil)
         args = []
         args += ["digdag", "sessions", pj, wf]
+
+        if page_size
+          args += ["--page-size", page_size]
+        end
+
         args += ["-e", @endpoint]
 
         out = DigdagUtils.system(*args)
