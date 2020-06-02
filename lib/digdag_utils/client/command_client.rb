@@ -26,13 +26,46 @@ module DigdagUtils
         }
       end
 
+      def _retry_resume_from(
+          attempt_id,
+          resume_from,
+          revision: revision
+        )
+        args = ["digdag", "retry", attempt_id]
+
+        if revision
+          args <<
+            case revision
+            when :keep then "--keep-revision"
+            when :latest then "--latest-revision"
+            else
+              raise "invalid"
+            end
+        end
+
+        args += ["-e", @endpoint]
+
+        DigdagUtils.system(*args)
+      end
+
       # revision: :latest | :keep
       # resume: :resume | :all
+      # rescume_from: "{task_name}"
       def retry(
         attempt_id,
         revision: :keep,
-        resume: :resume
+        resume: :resume,
+        resume_from: nil
       )
+        if resume_from
+          _retry_resume_from(
+            attempt_id,
+            resume_from,
+            revision: revision
+          )
+          return
+        end
+
         args = ["digdag", "retry", attempt_id]
 
         if revision
