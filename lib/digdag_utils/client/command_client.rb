@@ -9,13 +9,11 @@ module DigdagUtils
       end
 
       def sessions(pj, wf)
-        out =
-          DigdagUtils.system(
-            "digdag",
-            "sessions",
-            pj, wf,
-            "-e", @endpoint
-          )
+        args = []
+        args += ["digdag", "sessions", pj, wf]
+        args += ["-e", @endpoint]
+
+        out = DigdagUtils.system(*args)
 
         blocks = out.split("\n\n")
         blocks.map { |block|
