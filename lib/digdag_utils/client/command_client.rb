@@ -2,7 +2,7 @@ require_relative "../../digdag_utils"
 require_relative "client_base"
 
 module DigdagUtils
-  class Client
+  module Client
     class CommandClient < ClientBase
       def initialize(endpoint: nil)
         @endpoint = endpoint
