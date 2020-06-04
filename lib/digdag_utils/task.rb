@@ -18,7 +18,7 @@ module DigdagUtils
       state = nil
 
       if m = block.match(/  id: (\d+)/)
-        id = m[1].to_i
+        id = m[1]
       end
       if m = block.match(/  name: (.+)/)
         name = m[1]
