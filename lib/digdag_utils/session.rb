@@ -40,12 +40,27 @@ module DigdagUtils
       )
     end
 
+    def self.from_api_response(data)
+      new(
+        id:   data["id"],
+        time: data["sessionTime"],
+      )
+    end
+
     def last_attempt
       if @attempts.size == 1
         @attempts[0]
       else
         raise "not yet impl"
       end
+    end
+
+    def to_plain
+      {
+        id: @id,
+        time: @time,
+        attempts: @attempts,
+      }
     end
   end
 end
