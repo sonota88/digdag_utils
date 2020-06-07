@@ -2,6 +2,7 @@ require "shellwords"
 
 require "digdag_utils/session"
 require "digdag_utils/attempt"
+require "digdag_utils/project"
 
 module DigdagUtils
   def self.system(*args)
