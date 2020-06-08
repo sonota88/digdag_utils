@@ -1,13 +1,12 @@
 module DigdagUtils
   class Task
-    attr_reader :id, :name, :state
+    attr_reader :id, :state
     attr_reader :full_name
     attr_reader :parent_id, :upstreams
     attr_reader :is_group
 
     def initialize(
       id: nil,
-      name: nil,
       state: nil,
       full_name:        nil,
       cancel_requested: nil,
@@ -16,7 +15,6 @@ module DigdagUtils
       is_group:         nil
     )
       @id = id
-      @name = name
       @state = state
       @full_name        = full_name
       @cancel_requested = cancel_requested
@@ -27,14 +25,14 @@ module DigdagUtils
 
     def self.from_command_output(block)
       id = nil
-      name = nil
+      full_name = nil
       state = nil
 
       if m = block.match(/  id: (\d+)/)
         id = m[1]
       end
       if m = block.match(/  name: (.+)/)
-        name = m[1]
+        full_name = m[1]
       end
       if m = block.match(/  state: (.+)/)
         state = m[1]
@@ -42,7 +40,7 @@ module DigdagUtils
 
       Task.new(
         id: id,
-        name: name,
+        full_name: full_name,
         state: state
       )
     end
