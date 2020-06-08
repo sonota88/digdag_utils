@@ -4,6 +4,7 @@ require "digdag_utils/session"
 require "digdag_utils/attempt"
 require "digdag_utils/project"
 require "digdag_utils/workflow"
+require "digdag_utils/task"
 
 module DigdagUtils
   def self.system(*args)
