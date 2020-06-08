@@ -46,5 +46,17 @@ module DigdagUtils
         state: state
       )
     end
+
+    def self.from_api_response(data)
+      new(
+        id:               data["id"],
+        full_name:        data["fullName"],
+        state:            data["state"],
+        cancel_requested: data["cancelRequested"],
+        parent_id:        data["parentId"],
+        upstreams:        data["upstreams"],
+        is_group:         data["isGroup"]
+      )
+    end
   end
 end
