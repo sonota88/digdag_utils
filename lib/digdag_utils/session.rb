@@ -3,15 +3,18 @@ require_relative "attempt"
 module DigdagUtils
   class Session
     attr_reader :id, :time, :attempts
+    attr_reader :workflow
 
     def initialize(
       id: nil,
       time: nil,
-      attempts: nil
+      attempts: nil,
+      workflow: nil
     )
       @id = id
       @time = time
       @attempts = attempts
+      @workflow = workflow
     end
 
     def self.from_command_output(block)
@@ -56,11 +59,17 @@ module DigdagUtils
     end
 
     def to_plain
-      {
+      plain = {
         id: @id,
         time: @time,
         attempts: @attempts,
       }
+
+      if @workflow
+        plain[:workflow] = @workflow.to_plain
+      end
+
+      plain
     end
   end
 end
