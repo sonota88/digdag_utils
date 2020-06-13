@@ -48,7 +48,7 @@ module DigdagUtils
     def self.from_api_response(data)
       new(
         id:   data["id"],
-        time: data["sessionTime"],
+        time: Time.parse(data["sessionTime"]),
         last_attempt: data["lastAttempt"]
       )
     end
@@ -68,6 +68,10 @@ module DigdagUtils
         attempts: @attempts,
         last_attempt: @last_attempt,
       }
+
+      if @time
+        plain[:time] = @time.getlocal.iso8601
+      end
 
       if @workflow
         plain[:workflow] = @workflow.to_plain
