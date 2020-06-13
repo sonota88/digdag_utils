@@ -4,6 +4,7 @@ module DigdagUtils
     attr_reader :full_name
     attr_reader :parent_id, :upstreams
     attr_reader :is_group
+    attr_reader :cancel_requested
 
     def initialize(
       id: nil,
