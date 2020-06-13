@@ -10,7 +10,7 @@ module DigdagUtils
       @name = name
     end
 
-    def self.from_api_data(data)
+    def self.from_api_response(data)
       new(
         id:   data["id"],
         name: data["name"],
