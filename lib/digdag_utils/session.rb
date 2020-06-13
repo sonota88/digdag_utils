@@ -9,11 +9,13 @@ module DigdagUtils
       id: nil,
       time: nil,
       attempts: nil,
+      last_attempt: nil,
       workflow: nil
     )
       @id = id
       @time = time
       @attempts = attempts
+      @last_attempt = last_attempt
       @workflow = workflow
     end
 
@@ -47,6 +49,7 @@ module DigdagUtils
       new(
         id:   data["id"],
         time: data["sessionTime"],
+        last_attempt: data["lastAttempt"]
       )
     end
 
@@ -63,6 +66,7 @@ module DigdagUtils
         id: @id,
         time: @time,
         attempts: @attempts,
+        last_attempt: @last_attempt,
       }
 
       if @workflow
