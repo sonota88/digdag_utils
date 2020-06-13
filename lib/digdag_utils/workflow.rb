@@ -14,7 +14,8 @@ module DigdagUtils
 
     def self.from_api_response(data)
       project = DigdagUtils::Project.new(
-        id: data["project"]["id"]
+        id: data["project"]["id"],
+        name: data["project"]["name"]
       )
 
       new(
