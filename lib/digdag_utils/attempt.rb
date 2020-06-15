@@ -8,12 +8,16 @@ module DigdagUtils
       done:             nil,
       success:          nil,
       cancel_requested: nil,
+      created_at:       nil,
+      finished_at:      nil,
       session:          nil
     )
       @id = id
       @done             = done
       @success          = success
       @cancel_requested = cancel_requested
+      @created_at       = created_at
+      @finished_at      = finished_at
       @session          = session
     end
 
@@ -34,6 +38,8 @@ module DigdagUtils
         done:             data["done"],
         success:          data["success"],
         cancel_requested: data["cancelRequested"],
+        created_at:       DigdagUtils.from_plain_time(data["createdAt"]),
+        finished_at:      DigdagUtils.from_plain_time(data["finishedAt"]),
         session:          sess
       )
     end
@@ -44,6 +50,8 @@ module DigdagUtils
         done:             @done,
         success:          @success,
         cancel_requested: @cancel_requested,
+        created_at:       DigdagUtils.to_plain_time(@created_at),
+        finished_at:      DigdagUtils.to_plain_time(@finished_at),
         session:          @session.to_plain,
       }
     end
