@@ -25,6 +25,7 @@ module DigdagUtils
 
       sess = Session.new(
         id: data["sessionId"],
+        time: Time.parse(data["sessionTime"]),
         workflow: wf
       )
 
