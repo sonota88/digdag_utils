@@ -1,4 +1,5 @@
 require "shellwords"
+require "time"
 
 require "digdag_utils/session"
 require "digdag_utils/attempt"
@@ -15,6 +16,22 @@ module DigdagUtils
       raise "abnormal exit status (status=#{status.to_i} pid=#{status.pid})"
     end
     out
+  end
+
+  def self.from_plain_time(str)
+    if str
+      Time.parse(str)
+    else
+      nil
+    end
+  end
+
+  def self.to_plain_time(t)
+    if t
+      t.getlocal.iso8601
+    else
+      nil
+    end
   end
 end
 
