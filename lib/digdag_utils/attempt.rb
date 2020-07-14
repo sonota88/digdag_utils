@@ -2,6 +2,9 @@ module DigdagUtils
   class Attempt
     attr_reader :id
     attr_reader :session
+    attr_reader :done
+    attr_reader :success
+    attr_reader :cancel_requested
 
     def initialize(
       id: nil,
