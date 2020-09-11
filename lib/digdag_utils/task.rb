@@ -5,6 +5,7 @@ module DigdagUtils
     attr_reader :parent_id, :upstreams
     attr_reader :is_group
     attr_reader :cancel_requested
+    attr_reader :updated_at, :started_at, :retry_at
 
     def initialize(
       id: nil,
@@ -13,7 +14,10 @@ module DigdagUtils
       cancel_requested: nil,
       parent_id:        nil,
       upstreams:        nil,
-      is_group:         nil
+      is_group:         nil,
+      updated_at:       nil,
+      started_at:       nil,
+      retry_at:         nil
     )
       @id = id
       @state = state
@@ -22,6 +26,9 @@ module DigdagUtils
       @parent_id        = parent_id
       @upstreams        = upstreams
       @is_group         = is_group
+      @updated_at       = updated_at
+      @started_at       = started_at
+      @retry_at         = retry_at
     end
 
     def self.from_command_output(block)
@@ -54,7 +61,10 @@ module DigdagUtils
         cancel_requested: data["cancelRequested"],
         parent_id:        data["parentId"],
         upstreams:        data["upstreams"],
-        is_group:         data["isGroup"]
+        is_group:         data["isGroup"],
+        updated_at: DigdagUtils.from_plain_time(data["updatedAt"]),
+        started_at: DigdagUtils.from_plain_time(data["startedAt"]),
+        retry_at:   DigdagUtils.from_plain_time(data["retryAt"  ])
       )
     end
 
@@ -66,7 +76,10 @@ module DigdagUtils
         cancel_requested: @cancel_requested,
         parent_id:        @parent_id,
         upstreams:        @upstreams,
-        is_group:         @is_group
+        is_group:         @is_group,
+        updated_at: DigdagUtils.to_plain_time(@updated_at),
+        started_at: DigdagUtils.to_plain_time(@started_at),
+        retry_at:   DigdagUtils.to_plain_time(@retry_at),
       }
     end
   end
