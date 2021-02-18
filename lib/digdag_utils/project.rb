@@ -1,19 +1,21 @@
 module DigdagUtils
   class Project
-    attr_reader :id, :name
+    attr_reader :id, :name, :revision
 
     def initialize(
           id: nil,
-          name: nil
+          name: nil,
+          revision: nil
         )
       @id = id
       @name = name
+      @revision = revision
     end
 
     def self.from_api_response(data)
       new(
         id:   data["id"],
-        name: data["name"],
+        name: data["name"]
       )
     end
 
@@ -21,6 +23,7 @@ module DigdagUtils
       {
         id:   @id,
         name: @name,
+        revision: @revision,
       }
     end
   end
