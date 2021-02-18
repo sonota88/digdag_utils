@@ -36,7 +36,6 @@ module DigdagUtils
 
         args << @endpoint + "/api/" + path_with_params
 
-pp args
         sleep 0.5
         json = _system(*args)
         JSON.parse(json)
