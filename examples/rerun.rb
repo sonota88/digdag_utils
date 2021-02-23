@@ -22,10 +22,6 @@ class Runner
     d.strftime("%F")
   end
 
-  def fmt_time(t)
-    t.strftime("%F %T")
-  end
-
   def print_dates(ds)
     lines = []
 
@@ -37,34 +33,6 @@ class Runner
     end
 
     utils.print_text_block("dates", lines.join("\n"))
-  end
-
-  def print_status(t0, num_all, num_done)
-    if num_done == 0
-      utils.print_text_block("status", "N/A")
-      return
-    end
-
-    t_now = Time.now
-    elapsed_sec = (t_now - t0).to_f
-
-    v_sec = elapsed_sec / num_done
-    v_min = v_sec / 60.0
-    v_h   = v_min / 60.0
-
-    all_sec = v_sec * num_all
-    all_h   = all_sec / 60.0 / 60.0
-
-    lines = []
-    lines << format("t0:  %s", fmt_time(t0))
-    lines << format("now: %s", fmt_time(t_now))
-    lines << format("velocity: %.02f (min/count)", v_min)
-    lines << format("all:  %.02f h", all_h)
-    lines << format("rest: %.02f h", v_h * (num_all - num_done))
-    lines << format("num rest: %d", (num_all - num_done))
-    lines << format("completion (estimated): %s", fmt_time(t0 + all_sec))
-
-    utils.print_text_block("status", lines.join("\n"))
   end
 
   def run_step(d)
@@ -99,7 +67,7 @@ class Runner
     num_done = 0
 
     ds.each { |d|
-      print_status(t0, ds.size, num_done)
+      utils.print_status(t0, ds.size, num_done)
 
       flag_paths = {
         running: File.join(@config[:work_dir], fmt_date(d) + ".running"),
