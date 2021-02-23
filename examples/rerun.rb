@@ -10,7 +10,7 @@ class Runner
     @config = config
   end
 
-  def utils
+  def ru
     DigdagUtils::RunnerUtils
   end
 
@@ -32,7 +32,7 @@ class Runner
       liens << "date to:   " + ds[-2..-1].map{ |d| fmt_date(d) }.inspect
     end
 
-    utils.print_text_block("dates", lines.join("\n"))
+    ru.print_text_block("dates", lines.join("\n"))
   end
 
   def run_step(d)
@@ -42,7 +42,7 @@ class Runner
   end
 
   def run(date_from:, date_to:)
-    ds = utils.gen_date_list(date_from, date_to)
+    ds = ru.gen_date_list(date_from, date_to)
     print_dates(ds)
 
     # 開始前の sleep
@@ -57,7 +57,7 @@ class Runner
     num_done = 0
 
     ds.each do |d|
-      utils.print_status(t0, ds.size, num_done)
+      ru.print_status(t0, ds.size, num_done)
 
       flags = {
         running: File.join(@config[:work_dir], fmt_date(d) + ".running"),
