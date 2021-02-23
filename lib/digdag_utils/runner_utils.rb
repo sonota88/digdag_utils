@@ -1,3 +1,5 @@
+require "date"
+
 module DigdagUtils
   module RunnerUtils
     module Sleep
@@ -85,6 +87,16 @@ module DigdagUtils
 
       def fmt_time(t)
         t.strftime("%F %T")
+      end
+
+      def gen_date_list(date_from, date_to)
+        d_from = Date.parse(date_from)
+        d_to   = Date.parse(date_to)
+        if d_to < d_from
+          raise "date_to must be >= date_from"
+        end
+
+        (d_from .. d_to).to_a
       end
 
       def print_status(t0, num_all, num_done)

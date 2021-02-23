@@ -41,18 +41,8 @@ class Runner
     puts "<< step"
   end
 
-  def prepare_dates(date_from, date_to)
-    d_from = Date.parse(date_from)
-    d_to   = Date.parse(date_to)
-    if d_to < d_from
-      raise "date_to must be >= date_from"
-    end
-
-    (d_from .. d_to).to_a
-  end
-
   def run(date_from:, date_to:)
-    ds = prepare_dates(date_from, date_to)
+    ds = utils.gen_date_list(date_from, date_to)
     print_dates(ds)
 
     # 開始前の sleep
