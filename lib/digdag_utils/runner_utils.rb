@@ -82,6 +82,10 @@ module DigdagUtils
         puts lines.map{ |line| "  |" + line }.join("\n")
         puts "  ---- [/#{msg}] ----"
       end
+
+      def fmt_time(t)
+        t.strftime("%F %T")
+      end
     end
   end
 end
