@@ -66,38 +66,32 @@ class Runner
     num_all = ds.size
     num_done = 0
 
-    ds.each { |d|
+    ds.each do |d|
       utils.print_status(t0, ds.size, num_done)
 
-      flag_paths = {
+      flags = {
         running: File.join(@config[:work_dir], fmt_date(d) + ".running"),
         ok:      File.join(@config[:work_dir], fmt_date(d) + ".ok"    ),
         failed:  File.join(@config[:work_dir], fmt_date(d) + ".failed"),
       }
 
-      do_skip = false
-      flag_paths.each { |_, path|
-        if File.exist?(path)
-          do_skip = true
-          break
-        end
-      }
+      do_skip = flags.values.any? { |path| File.exist?(path) }
       if do_skip
         _sleep.sec 5
         next
       end
 
-      FileUtils.touch flag_paths[:running]
+      FileUtils.touch flags[:running]
 
       begin
         run_step(d)
-        FileUtils.mv flag_paths[:running], flag_paths[:ok]
+        FileUtils.mv flags[:running], flags[:ok]
       rescue => e
-        FileUtils.mv flag_paths[:running], flag_paths[:failed]
+        FileUtils.mv flags[:running], flags[:failed]
       end
 
       num_done += 1
-    }
+    end
   end
 end
 
