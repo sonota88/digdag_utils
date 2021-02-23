@@ -86,6 +86,34 @@ module DigdagUtils
       def fmt_time(t)
         t.strftime("%F %T")
       end
+
+      def print_status(t0, num_all, num_done)
+        if num_done == 0
+          print_text_block("status", "N/A")
+          return
+        end
+
+        t_now = Time.now
+        elapsed_sec = (t_now - t0).to_f
+
+        v_sec = elapsed_sec / num_done
+        v_min = v_sec / 60.0
+        v_h   = v_min / 60.0
+
+        all_sec = v_sec * num_all
+        all_h   = all_sec / 60.0 / 60.0
+
+        lines = []
+        lines << format("t0:  %s", fmt_time(t0))
+        lines << format("now: %s", fmt_time(t_now))
+        lines << format("velocity: %.02f (min/count)", v_min)
+        lines << format("all:  %.02f h", all_h)
+        lines << format("rest: %.02f h", v_h * (num_all - num_done))
+        lines << format("num rest: %d", (num_all - num_done))
+        lines << format("completion (estimated): %s", fmt_time(t0 + all_sec))
+
+        print_text_block("status", lines.join("\n"))
+      end
     end
   end
 end
