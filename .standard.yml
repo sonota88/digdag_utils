@@ -1,0 +1,15 @@
+ignore:
+  - "z_bundle/**/*"
+  - "**/*":
+    - Layout/ExtraSpacing
+    - Layout/HashAlignment
+    - Layout/SpaceAfterNot
+    - Layout/SpaceAroundOperators
+    - Layout/SpaceInsideParens
+    - Layout/SpaceInsideReferenceBrackets
+    - Style/EmptyElse
+    - Style/MethodCallWithoutArgsParentheses
+    - Style/SlicingWithRange
+  - "digdag_utils.gemspec":
+    - Style/PercentLiteralDelimiters
+    - Style/RedundantPercentQ
