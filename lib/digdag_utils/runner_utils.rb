@@ -83,7 +83,7 @@ module DigdagUtils
           print line
         end
 
-        def sec(sec, msg=nil)
+        def sec(sec, msg = nil)
           t0 = Time.now
           limit = t0 + sec
 
@@ -98,7 +98,7 @@ module DigdagUtils
           print "\n"
         end
 
-        def min(min, msg=nil)
+        def min(min, msg = nil)
           puts "sleep #{min} min"
           sec(min * 60.0, msg)
         end
