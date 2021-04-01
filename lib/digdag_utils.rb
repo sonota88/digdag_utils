@@ -12,7 +12,7 @@ module DigdagUtils
     cmd = Shellwords.shelljoin(args)
     out = `#{cmd}`
     status = $? # Process::Status
-    if not status.success?
+    if ! status.success?
       raise "abnormal exit status (status=#{status.to_i} pid=#{status.pid})"
     end
     out

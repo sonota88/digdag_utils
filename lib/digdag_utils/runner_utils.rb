@@ -131,7 +131,7 @@ module DigdagUtils
           raise "date_to must be >= date_from"
         end
 
-        (d_from .. d_to).to_a
+        (d_from..d_to).to_a
       end
 
       def gen_date_hour_list(date_hour_from, date_hour_to)
