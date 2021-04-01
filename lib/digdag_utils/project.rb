@@ -23,7 +23,7 @@ module DigdagUtils
       {
         id:   @id,
         name: @name,
-        revision: @revision,
+        revision: @revision
       }
     end
   end

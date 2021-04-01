@@ -62,7 +62,7 @@ class Runner
       flags = {
         running: File.join(@config[:work_dir], fmt_date(d) + ".running"),
         ok:      File.join(@config[:work_dir], fmt_date(d) + ".ok"    ),
-        failed:  File.join(@config[:work_dir], fmt_date(d) + ".failed"),
+        failed:  File.join(@config[:work_dir], fmt_date(d) + ".failed")
       }
 
       do_skip = flags.values.any? { |path| File.exist?(path) }
@@ -88,12 +88,12 @@ end
 CONFIG_MAP = {
   devel: {
     endpoint: "http://localhost:65432/",
-    work_dir: "z_work_devel",
+    work_dir: "z_work_devel"
   },
   prod: {
     endpoint: "http://localhost:65432/",
-    work_dir: "z_work_prod",
-  },
+    work_dir: "z_work_prod"
+  }
 }
 
 config = CONFIG_MAP[:devel]

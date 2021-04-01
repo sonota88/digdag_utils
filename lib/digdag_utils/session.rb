@@ -66,7 +66,7 @@ module DigdagUtils
         id: @id,
         time: @time,
         attempts: @attempts,
-        last_attempt: @last_attempt,
+        last_attempt: @last_attempt
       }
 
       if @time

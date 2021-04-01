@@ -55,7 +55,7 @@ module DigdagUtils
         cancel_requested: @cancel_requested,
         created_at:       DigdagUtils.to_plain_time(@created_at),
         finished_at:      DigdagUtils.to_plain_time(@finished_at),
-        session:          @session.to_plain,
+        session:          @session.to_plain
       }
     end
   end

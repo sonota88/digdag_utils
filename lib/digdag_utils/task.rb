@@ -79,7 +79,7 @@ module DigdagUtils
         is_group:         @is_group,
         updated_at: DigdagUtils.to_plain_time(@updated_at),
         started_at: DigdagUtils.to_plain_time(@started_at),
-        retry_at:   DigdagUtils.to_plain_time(@retry_at),
+        retry_at:   DigdagUtils.to_plain_time(@retry_at)
       }
     end
   end

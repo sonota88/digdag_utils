@@ -16,7 +16,7 @@ module DigdagUtils
       project = DigdagUtils::Project.new(
         id: data["project"]["id"],
         name: data["project"]["name"],
-        revision: data["revision"],
+        revision: data["revision"]
       )
 
       new(
@@ -29,7 +29,7 @@ module DigdagUtils
     def to_plain
       {
         id:   @id,
-        name: @name,
+        name: @name
       }
     end
   end
