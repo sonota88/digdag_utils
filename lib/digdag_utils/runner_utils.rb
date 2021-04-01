@@ -135,6 +135,19 @@ module DigdagUtils
         (d_from .. d_to).to_a
       end
 
+      def gen_date_hour_list(date_hour_from, date_hour_to)
+        d = date_hour_from
+
+        list = []
+        while d.before?(date_hour_to)
+          list << d
+          d = d.succ
+        end
+        list << date_hour_to
+
+        list
+      end
+
       def print_status(t0, num_all, num_done)
         if num_done == 0
           print_text_block("status", "N/A")
