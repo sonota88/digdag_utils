@@ -41,7 +41,7 @@ module DigdagUtils
       Session.new(
         id: id,
         time: time,
-        attempts: attempts,
+        attempts: attempts
       )
     end
 

@@ -79,7 +79,7 @@ module DigdagUtils
           _retry_resume_from(
             attempt_id,
             resume_from,
-            revision: revision,
+            revision: revision
           )
           return
         end
