@@ -2,6 +2,42 @@ require "date"
 
 module DigdagUtils
   module RunnerUtils
+    class DateHour
+      attr_reader :date, :hour
+
+      def initialize(date, hour)
+        @date =
+          if date.is_a?(String)
+            Date.parse(date)
+          else
+            date
+          end
+        @hour = hour
+      end
+
+      def succ
+        if @hour == 23
+          DateHour.new(@date + 1, 0)
+        else
+          DateHour.new(@date, @hour + 1)
+        end
+      end
+
+      def before?(other)
+        if @date < other.date
+          true
+        elsif @date == other.date
+          @hour < other.hour
+        else
+          false
+        end
+      end
+
+      def to_s
+        format("%s_%02d", @date.strftime("%F"), @hour)
+      end
+    end
+
     module Sleep
       class << self
         def _fmt_time(t)
