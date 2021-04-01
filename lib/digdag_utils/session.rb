@@ -24,13 +24,13 @@ module DigdagUtils
       time = nil
       attempt_id = nil
 
-      if m = block.match(/  session id: (\d+)/)
+      if (m = block.match(/  session id: (\d+)/))
         id = m[1]
       end
-      if m = block.match(/  session time: (.+)/)
+      if (m = block.match(/  session time: (.+)/))
         time = Time.parse(m[1])
       end
-      if m = block.match(/  attempt id: (\d+)/)
+      if (m = block.match(/  attempt id: (\d+)/))
         attempt_id = m[1]
       end
 

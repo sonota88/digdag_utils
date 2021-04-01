@@ -36,13 +36,13 @@ module DigdagUtils
       full_name = nil
       state = nil
 
-      if m = block.match(/  id: (\d+)/)
+      if (m = block.match(/  id: (\d+)/))
         id = m[1]
       end
-      if m = block.match(/  name: (.+)/)
+      if (m = block.match(/  name: (.+)/))
         full_name = m[1]
       end
-      if m = block.match(/  state: (.+)/)
+      if (m = block.match(/  state: (.+)/))
         state = m[1]
       end
 
