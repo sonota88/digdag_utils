@@ -18,6 +18,18 @@ module DigdagUtils
     out
   end
 
+  def self.system_v2(args, check: true)
+    if check
+      return DigdagUtils.system(*args)
+    end
+
+    cmd = Shellwords.shelljoin(args)
+    out = `#{cmd}`
+    status = $? # Process::Status
+
+    [out, status]
+  end
+
   def self.from_plain_time(str)
     if str
       Time.parse(str)
