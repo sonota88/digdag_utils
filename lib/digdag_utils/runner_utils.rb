@@ -69,7 +69,6 @@ module DigdagUtils
           bar = "=" * num_elapsed
           bar << ">"
           bar << "." * (bar_size - num_elapsed)
-          bar
 
           line = "(sleep) "
           line << "rest: #{_fmt_duration(rest_sec)}"

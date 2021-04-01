@@ -35,7 +35,7 @@ module DigdagUtils
       end
 
       attempts = [
-        Attempt.new(id: attempt_id),
+        Attempt.new(id: attempt_id)
       ]
 
       Session.new(

@@ -27,7 +27,7 @@ module DigdagUtils
               path
             else
               path + "?" + params.to_a
-                .map { |k, v| "#{k}=#{v}"} # TODO encode
+                .map { |k, v| "#{k}=#{v}" } # TODO encode
                 .join("&")
             end
           else
