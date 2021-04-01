@@ -1,28 +1,43 @@
 require "json"
+require "shellwords"
 
 $LOAD_PATH.unshift "../lib"
 require "digdag_utils"
 require "digdag_utils/client/curl_client"
 
+module DigdagUtils
+  module Client
+    class CommandClient < ClientBase
+      def start(pj, wf, session_time: nil)
+        cmd = ["digdag", "start", pj, wf]
+        if session_time
+          cmd += ["--session", session_time]
+        end
+        cmd += ["-e", @endpoint]
+
+        DigdagUtils.system_v2(cmd, check: false)
+      end
+    end
+  end
+end
+
 $endpoint = "http://localhost:65432"
 
-$client = DigdagUtils::Client::CurlClient.new(
+$command_client = DigdagUtils::Client::CommandClient.new(
+  endpoint: $endpoint
+)
+$curl_client = DigdagUtils::Client::CurlClient.new(
   endpoint: $endpoint
 )
 
 def start
   pj = "pj_test_sample2"
   wf = "wf_4"
-  sess_time = "2021-02-25 00:00:00"
-  cmd = %(digdag start "#{pj}" "#{wf}" --session "#{sess_time}" -e "#{$endpoint}")
-  puts cmd
 
-  out = `#{cmd}`
-  unless $?.success?
-    raise "curl failed"
-  end
-
-  out
+  $command_client.start(
+    pj, wf,
+    sess_time: "2021-02-25 00:00:00"
+  )
 end
 
 # TODO timeout config
@@ -36,7 +51,7 @@ def wait_attempt(aid)
 
     # resp = JSON.parse(out)
 
-    resp = $client.get_attempt(aid)
+    resp = $curl_client.get_attempt(aid)
 
     pp resp
     att = DigdagUtils::Attempt.from_api_response(resp)
