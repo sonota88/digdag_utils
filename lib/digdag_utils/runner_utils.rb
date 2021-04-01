@@ -62,7 +62,7 @@ module DigdagUtils
             1.0
           ].min
 
-          percent = ratio * 100.0
+          # percent = ratio * 100.0
 
           bar_size = 40
           num_elapsed = (bar_size * ratio).floor

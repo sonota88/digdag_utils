@@ -51,7 +51,7 @@ class Runner
     FileUtils.mkdir_p(@config[:work_dir])
 
     t0 = Time.now
-    num_all = ds.size
+    # num_all = ds.size
     num_done = 0
 
     ds.each do |d|
@@ -74,7 +74,7 @@ class Runner
       begin
         run_step(d)
         FileUtils.mv flags[:running], flags[:ok]
-      rescue => e
+      rescue
         FileUtils.mv flags[:running], flags[:failed]
       end
 
