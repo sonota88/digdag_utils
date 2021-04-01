@@ -3,10 +3,10 @@ module DigdagUtils
     attr_reader :id, :name, :revision
 
     def initialize(
-          id: nil,
-          name: nil,
-          revision: nil
-        )
+      id: nil,
+      name: nil,
+      revision: nil
+    )
       @id = id
       @name = name
       @revision = revision
