@@ -26,10 +26,10 @@ class Runner
     lines = []
 
     if ds.size <= 4
-      lines << ds.map{ |d| fmt_date(d) }.inspect
+      lines << ds.map { |d| fmt_date(d) }.inspect
     else
-      liens << "date from: " + ds[0..1].map{ |d| fmt_date(d) }.inspect
-      liens << "date to:   " + ds[-2..-1].map{ |d| fmt_date(d) }.inspect
+      liens << "date from: " + ds[0..1].map { |d| fmt_date(d) }.inspect
+      liens << "date to:   " + ds[-2..-1].map { |d| fmt_date(d) }.inspect
     end
 
     ru.print_text_block("dates", lines.join("\n"))

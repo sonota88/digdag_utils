@@ -117,7 +117,7 @@ module DigdagUtils
           end
 
         puts "  ---- [#{msg}] ----"
-        puts lines.map{ |line| "  |" + line }.join("\n")
+        puts lines.map { |line| "  |" + line }.join("\n")
         puts "  ---- [/#{msg}] ----"
       end
 
