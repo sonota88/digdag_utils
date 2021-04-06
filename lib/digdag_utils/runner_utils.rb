@@ -33,6 +33,10 @@ module DigdagUtils
         end
       end
 
+      def hh
+        format("%02d", @hour)
+      end
+
       def to_s
         format("%s_%02d", @date.strftime("%F"), @hour)
       end
