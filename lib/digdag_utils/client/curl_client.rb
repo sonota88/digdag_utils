@@ -95,6 +95,16 @@ module DigdagUtils
       def get_attempt_tasks(id)
         _curl("attempts/#{id}/tasks")
       end
+
+      # Schedule
+
+      def get_schedules(last_id: nil)
+        params = {}
+        if last_id
+          params[:last_id] = last_id
+        end
+        _curl("schedules", params)
+      end
     end
   end
 end
