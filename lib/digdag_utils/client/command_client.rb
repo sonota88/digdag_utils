@@ -110,6 +110,17 @@ module DigdagUtils
 
         _system(*args)
       end
+
+      def reschedule(
+            schedule_id,
+            skip_to: Time.now.strftime("%F %T +0900")
+          )
+        args = ["digdag", "reschedule", schedule_id]
+        args += ["--skip-to", skip_to]
+        args += ["-e", @endpoint]
+
+        _system(*args)
+      end
     end
   end
 end
