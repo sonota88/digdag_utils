@@ -36,6 +36,10 @@ module DigdagUtils
       def to_s
         format("%s_%02d", @date.strftime("%F"), @hour)
       end
+
+      def inspect
+        format("#<DateHour @date=%s, @hour=%d>", @date.strftime("%F"), @hour)
+      end
     end
 
     module Sleep
