@@ -1,0 +1,7 @@
+module DigdagUtils
+  module Client
+    class CurlClient
+      def get_projects: () -> Hash[String, untyped]
+    end
+  end
+end
